@@ -3,7 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 
-Vue.config.productionTip = false
+// We Have import vue-resource (npm install vue-resource)
+import vueResouce from 'vue-resource'
+
+
+Vue.config.productionTip = false;
+Vue.use(vueResouce);
 
 /* eslint-disable no-new */
 new Vue({

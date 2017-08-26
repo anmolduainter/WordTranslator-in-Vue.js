@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <h1>Word Translator</h1>
+    <br>
+    <TranslateForm v-on:formSubmitted="textTranslate"></TranslateForm>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+
+  import TranslateForm from './components/TranslateForm'
 
 export default {
   name: 'app',
   components: {
-    Hello
+      TranslateForm
+  },
+
+  methods:{
+      textTranslate:function (text) {
+
+          this.$http.get('https://translate.yandex.net/api/v1.5/tr.jsonp/translate?key=trnsl.1.1.20170826T072718Z.e12fa85b5b177271.b767ff417ea0fbfb3e0a22a6aca8791558729d0e&lang=pa&callback=TEXT&text='+text)
+            .then((res)=>{
+              console.log(res)
+            })
+
+      }
   }
+
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
